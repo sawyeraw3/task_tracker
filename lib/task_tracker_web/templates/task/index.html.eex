@@ -1,0 +1,38 @@
+<%= if @current_user do %>
+  <h1>Listing Tasks</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Time</th>
+        <th>Assigned To</th>
+        <th>Complete</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for task <- @tasks do %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.desc %></td>
+        <td><%= task.time %></td>
+        <td><%= if TaskTracker.Users.get_user(task.user_id) do TaskTracker.Users.get_user(task.user_id).email end %></td>
+        <td><%= task.complete %></td>
+
+        <td>
+          <%= link "Show", to: Routes.task_path(@conn, :show, task), class: "btn btn-secondary" %>
+          <%= link "Edit", to: Routes.task_path(@conn, :edit, task), class: "btn btn-info" %>
+          <%= if @current_user && @current_user.admin do %>
+            <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+
+  <span><%= link "New Task", to: Routes.task_path(@conn, :new), class: "btn btn-primary" %></span>
+<% end %>

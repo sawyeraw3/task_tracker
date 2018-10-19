@@ -1,0 +1,8 @@
+run_erl [14162] Fri Oct 19 03:21:39 2018
+Args before exec of shell:
+run_erl [14162] Fri Oct 19 03:21:39 2018
+argv[0] = sh
+run_erl [14162] Fri Oct 19 03:21:39 2018
+argv[1] = -c
+run_erl [14162] Fri Oct 19 03:21:39 2018
+argv[2] = exec "/home/sawyer/hw06/task_tracker/_build/prod/rel/task_tracker/bin/task_tracker" "console" --  
